@@ -23,12 +23,13 @@ void insertion_sort_list(listint_t **list)
 				if (tmp->next != NULL)
 				{
 					thd = list2->next->next;
+					if (thd->next != NULL)
+						thd->next->prev = tmp;
 					tmp->next->prev = tmp->prev;
 					tmp->next = tmp->next->next;
 					tmp->prev->next = thd;
 					tmp->prev = thd;
 					thd->next = tmp;
-					thd->prev = list2;
 				}
 				else
 				{

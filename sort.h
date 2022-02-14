@@ -22,5 +22,6 @@ int swapped(int *array, size_t size);
 void insertion_sort_list(listint_t **list);
 int swapped_array(listint_t *array);
 void selection_sort(int *array, size_t size);
+void swap_elements(int *x, size_t *y);
 
 #endif

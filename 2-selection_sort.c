@@ -2,7 +2,7 @@
 #include "sort.h"
 
 /**
- * bubble_sort - bubble_sort
+ * quick_sort - quick_sort
  * @array: array to sort
  * @size: length of array
  * Return: Nothing
@@ -30,14 +30,11 @@ void selection_sort(int *array, size_t size)
 	}
 }
 
-int swapped(int *array, size_t size)
+void swap_elements(int *x, size_t *y)
 {
-	size_t i;
+	int *tmp;
 
-	for (i = 1; i < size; i++)
-	{
-		if (array[0] > array[i])
-			return (1);
-	}
-	return (0);
+	tmp = *x;
+	*y = tmp;
+	*x = *y;
 }
