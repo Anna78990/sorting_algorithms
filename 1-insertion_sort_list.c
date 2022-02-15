@@ -10,8 +10,7 @@ void insertion_sort_list(listint_t **list)
 {
 	listint_t *list2 = *list;
 	listint_t *fst = *list;
-	listint_t *ptr1, *ptr2;
-	int counter, i, j, swapped = 1;
+	int counter, i, j, key;
 	
 	counter = 0;
 	while (list2)
@@ -19,26 +18,20 @@ void insertion_sort_list(listint_t **list)
 		counter++;
 		list2 = list2->next;
 	}
-
-	for (i = 0; i <= counter; i++)
+	list2 = (*list)->next;
+	for (i = 1; i < counter; i++)
 	{
-		list2 = *list;
-		swapped = 0;
-
-		for (j = 0; j < counter - i - 1; j++)
+		key = list2->n;
+		j = i - 1;
+		
+		while (j >= 0 && list2->prev->n > key)
 		{
-			if (list2->n > list2->next->n)
-			{
-				ptr1 = list2;
-				ptr2 = list2->next;
-				swap_list(ptr1, ptr2);
-				print_list(fst);
-				swapped += 1;
-			}
-			list2 = list2->next;
+			swap_list(list2->prev, list2);
+			list2 = list2->prev;
+			j--;
+			print_list(fst);
 		}
-		if (swapped == 0)
-			break;
+		list2 = list2->next;
 	}
 }
 
