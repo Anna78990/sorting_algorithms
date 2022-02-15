@@ -10,29 +10,25 @@
 
 void selection_sort(int *array, size_t size)
 {
-	size_t i, j;
-	int n;
+	int i, j, min_index;
 	
-	while (swapped(array, size) == 1)
+	for (i = 0; i < (int)size - 1; i++)
 	{
-		for (i = 0; i < size; i++)
+		min_index = i;
+		for (j = i + 1; j < (int)size; j++)
 		{
-			j = i + 1;
-			if (array[i] > array[j])
+			if (array[j] < array[min_index])
 			{
-				n = array[i];
-				array[i] = array[j];
-				array[j] = n;
-				print_array(array, size);
+				min_index = j;
 			}
 		}
-		i = 0;
+		swap_elements(&array[min_index], &array[i]);
 	}
 }
 
-void swap_elements(int *x, size_t *y)
+void swap_elements(int *x, int *y)
 {
-	int *tmp;
+	int tmp;
 
 	tmp = *x;
 	*y = tmp;
