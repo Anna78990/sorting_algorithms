@@ -9,57 +9,50 @@
 void insertion_sort_list(listint_t **list)
 {
 	listint_t *list2 = *list;
-	listint_t *tmp, *thd, *pre, *fst;
-	int n;
+	listint_t *fst = *list;
+	listint_t *ptr1, *ptr2;
+	int counter, i, j, swapped = 1;
 	
-	while (swapped_array(list2) == 1)
+	counter = 0;
+	while (list2)
 	{
-		while (list2->next != NULL)
+		counter++;
+		list2 = list2->next;
+	}
+
+	for (i = 0; i <= counter; i++)
+	{
+		list2 = *list;
+		swapped = 0;
+
+		for (j = 0; j < counter - i - 1; j++)
 		{
-			n = list2->n;
-			if (n > list2->next->n)
+			if (list2->n > list2->next->n)
 			{
-				tmp = list2->next;
-				if (tmp->next != NULL)
-				{
-					thd = list2->next->next;
-					if (thd->next != NULL)
-						thd->next->prev = tmp;
-					tmp->next->prev = tmp->prev;
-					tmp->next = tmp->next->next;
-					tmp->prev->next = thd;
-					tmp->prev = thd;
-					thd->next = tmp;
-				}
-				else
-				{
-					pre = list2;
-					tmp->next = pre;
-					tmp->prev = pre->prev;
-					pre->prev->next = tmp;
-					pre->prev = tmp;
-					pre->next = NULL;
-				}
+				ptr1 = list2;
+				ptr2 = list2->next;
+				swap_list(ptr1, ptr2);
+				print_list(fst);
+				swapped += 1;
 			}
-			fst = list2;
-			while (fst->prev != NULL)
-				fst = fst->prev;
-			print_list(fst);
 			list2 = list2->next;
 		}
-		list2 = *list;
+		if (swapped == 0)
+			break;
 	}
 }
 
-int swapped_array(listint_t *array)
+void swap_list(listint_t *array, listint_t *array2)
 {
-	int first_number = array->n;
+	listint_t *pre = array->prev;
+	listint_t *nxt = array2->next;
 
-	while (array->next)
-	{
-		if (first_number > array->n)
-			return (1);
-		array = array->next;
-	}
-	return (0);
+	if (array->prev)
+		array->prev->next = array2;
+	if (array2->next)
+		array2->next->prev = array;
+	array2->next = array;
+	array2->prev = pre;
+	array->prev = array2;
+	array->next = nxt;
 }
