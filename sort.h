@@ -23,5 +23,8 @@ void insertion_sort_list(listint_t **list);
 void swap_list(listint_t **list, listint_t *array, listint_t *array2);
 void selection_sort(int *array, size_t size);
 void swap_elements(int *x, int *y);
+void quick_sort(int *array, size_t size);
+int partition(int arr[], int low, int high, int size);
+void quickSort(int *array, int low, int high, int size);
 
 #endif
